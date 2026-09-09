@@ -246,7 +246,7 @@ tpl.onclick=()=>{endWalk();tpl.classList.add('on');t3d.classList.remove('on');te
   stage.style.display='none';planw.style.display='block';};
 twk.onclick=()=>{walk=true;exTarget=0;exT=0;
   twk.classList.add('on');t3d.classList.remove('on');tex.classList.remove('on');tpl.classList.remove('on');
-  try{const s=JSON.parse(localStorage.no03walk||'null');if(s&&s.p){wp=s.p;yaw=s.y;pitch=s.pi;}}catch(e){}
+  try{const s=JSON.parse(localStorage['walk_'+document.title]||'null');if(s&&s.p){wp=s.p;yaw=s.y;pitch=s.pi;}}catch(e){}
   hint.textContent=HINT_WALK;show3d();};
 let anim=null;
 function animate(){
@@ -372,7 +372,7 @@ function draw(){
     const f=[Math.cos(yaw)*cp,Math.sin(yaw)*cp,Math.sin(pitch)];
     P=persp(1.08,cv.width/cv.height,0.4,2500);
     V=look(wp,[wp[0]+f[0],wp[1]+f[1],wp[2]+f[2]],[0,0,1]);
-    try{localStorage.no03walk=JSON.stringify({p:wp,y:yaw,pi:pitch});}catch(e){}
+    try{localStorage['walk_'+document.title]=JSON.stringify({p:wp,y:yaw,pi:pitch});}catch(e){}
   }else{
     const ce=Math.cos(el),se=Math.sin(el),ca=Math.cos(az),sa=Math.sin(az);
     const eye=[tgt[0]+dist*ce*ca, tgt[1]+dist*ce*sa, tgt[2]+dist*se+exT*38];
